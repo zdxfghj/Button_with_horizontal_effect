@@ -1,35 +1,11 @@
 <template>
-
     <div id="app">
-    <div class="page-animated"></div>
-      <div :class="['bg', bg]">
-        <header>
-          <nav>
-            <ul>
-              <li><a class="link-bio" href="#bio" @click="bg = 'bio'">Bio</a></li>
-              <li><a class="link-projects" href="#projects" @click="bg = 'projects'">Projects</a></li>
-              <li><a class="link-find-me" href="#findme" @click="bg = 'find-me'">Find Me</a></li>
-             
-            </ul>
-          </nav>
-          <div class="transition transition-bio"></div>
-          <div class="transition transition-projects"></div>
-          <div class="transition transition-find-me"></div>
-          <h1>Header</h1>
-        </header>
-       
-        <main>
-          <transition name="slide-fade" mode="out-in">
-            <p key="bio" v-if="bg==='bio'">Hi! I'm a bio page.</p>
-            <p key="projects" v-else-if="bg==='projects'">This is a projects page.
-            
-            </p>
-            <p key="find-me" v-else-if="bg==='find-me'">See <a href="https://pehaa.com" target="_blank" rel="noopener">pehaa.com</a> for the complete website (built with Nuxt.js).</p>
-          </transition>
-        </main>
-      </div>
+    	  <a class="button" href="#" data-title="Free download">
+            <span>
+              <span>Free download</span>
+            </span>
+          </a>
     </div>
-
 </template>
 
 <script>
@@ -39,300 +15,50 @@ export default {
   components: {
    
   },
-  data() {
-    return {
-      bg: 'bio'
-    }
-  }
-}
+  
 </script>
 
 <style lang="scss">
 
-  //--button page--
 
-// -----------------------
-.page-animated{
-  width: 100vw;
-  background: #2c3e50;
-  height: 100vh;
-  position: absolute;
-  z-index: 2000;
-  overflow: hidden;
-  transform: translateY(0);
-  animation:  exemple 4s forwards ;
-}
-
-
-@keyframes exemple {
-  from{
-    transform:translateY(0);
-   
-  }
-  to{
-    transform: translateY(-750px);
-   
+.button{
+    display: block;
+    position: relative;
+    height: 3.4em;
+    width: 10em;
+    margin: .7em auto;
+    overflow: hidden;
+    text-decoration: none;
   }
   
-}
-
-
-
-
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-
-}
-
-*{
-  box-sizing: border-box;
-}
-:root {
-	--purple-brown: #231f20;
-	--egg-shell: #e8e4d2;
-	--dark-peach: #e26961;
-  --border-width: .75rem;
-  --dots-gap: 10px;
-}
-*, *:before, *:after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-body {
-  font-family: Trocchi, Georgia, serif;
-  line-height: 1.5;
-  color: var(--egg-shell);
-}
-a {
-  color: inherit;
-}
-
-.bg {
-  background: inherit;
-  min-height: 100vh;
-  padding: 25vh 0 1.5rem;
-  transition: background 0s 1s, color .6s;
-}
-.projects {
-  color: var(--purple-brown);
-}
-
-// marie-louise
-.bg:after {
-	content: "";
-	border: var(--border-width) solid;
-	position: fixed;
-	left: 0;
-	top: 0;
-	bottom: 0;
-	right: 0;
-  z-index: 12;
-  pointer-events: none;
-  transition: 1s;
-}
-
-.bio,
-.link-bio {
-  background: var(--purple-brown);
-}
-
-.bio h1 {
-  background-color: var(--dark-peach);
-}
-.projects,
-.link-projects {
-  background: var(--egg-shell);
-}
-
-.find-me,
-.link-find-me {
-  background: var(--dark-peach);
-}
-
-// bg transition
-
-.transition {
-  width: 1rem;
-  height: 1rem;
-  top: 0;
-  display: block;
-  position: absolute;
-  opacity: 0;
-  transition: transform .6s ease-in-out;
-  width: 100%;
-  height: 100vh;
-  transform: scale(0.1);
-  transform-origin: 0 0;
-}
-.transition-bio {
-  left: 0;
-  background: var(--purple-brown);
-}
-.transition-projects {
-  left: 7.5rem;
-  background: var(--egg-shell);
-}
-.transition-find-me {
-  left: 15rem;
-  background: var(--dark-peach);
-}
-
-.bio .transition-bio,
-.projects .transition-projects,
-.find-me .transition-find-me {
-  opacity: 1;
-}
-.bio .transition-bio {
-  transform: scale(1);
-}
-.projects .transition-projects {
-  transform: scale(1) translateX(-7.5rem) ;
-}
-.find-me .transition-find-me {
-  transform: scale(1) translateX(-15rem) ;
-}
-
-// dots
-
-.dots:before,
-.dots:after {
-  content: "";
-  position: fixed;
-	top: 0;
-	bottom: 0;
-	opacity: .5;
-	z-index: 11;
-	background-image: linear-gradient(var(--dark-peach) 20%,transparent 0);
-  background-size: 100% var(--dots-gap);
-  background-position: 0 0;
-	animation: movebg .2s linear infinite;
-	will-change: transform;	
-	width: 2px;
-}
-
-.dots1:before {
-  left: 5%;
-}
-.dots1:after {
-  left: 15%;
-}
-.dots2:before {
-  right: 75%;
-}
-.dots2:after {
-  right: 5%;
-}
-
-.dots:after {
-  animation-direction: reverse;
-}
-
-.projects {
-  .dots:before,
-  .dots:after {
-    background-image: linear-gradient(var(--purple-brown) 20%,transparent 0);
-  }
-}
-.find-me {
-  .dots:before,
-  .dots:after {
-    background-image: linear-gradient(var(--egg-shell) 20%,transparent 0);
-  }
-}
-
-@keyframes movebg {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(0, var(--dots-gap), 0);
-  }
-}
-
-// h1
-
-h1 {
-  font-family: "Anton", sans-serif;
-  text-align: center;
-  margin: 0;
-  -webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	-webkit-mask-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#000),color-stop(.5,#000),color-stop(1,transparent));
-	transition: background-position 1s, background-color 1s;
-	text-align: center;
-	font-size: calc(28vw + 1rem);
-  font-weight: 400;
-	line-height: 1;
-  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/tw-o.png'), url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/tw6-o.png'), url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/tw5-o.png');
-  background-size: 45vw auto, 45vw auto, 30vw auto;
-  background-repeat: repeat-x;
-  background-position: 0px 15%, 200px 25%, -50px 2vw;
-}
-.projects h1 {
-  background-color: var(--dark-peach);
-  background-position: -120px 15%, 230px 20%, -100px 3vw;
-}
-.find-me h1 {
-  background-color: var(--egg-shell);
-  background-position: -240px 15%, 260px 25%, -150px 1vw;
-}
-
-
-nav {
-  position: fixed;
-  top: var(--border-width);
-  left: var(--border-width);
-  z-index: 10;
-  ul {
-    list-style: none;
-    display: flex;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-  }
-  li {
-    flex: 1 0 7.5rem;
-  }
-  a {
+  .button > span{
     display: block;
-    padding: .75rem 0 .5rem;
-    color: var(--egg-shell);
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: .875rem;
+    position: absolute;
+    overflow: hidden;
+      left: 0;
+      top: 0;
+      width: 0%;
+      height: 100%;
+      transition: 1s ease-in-out; 
   }
-  .link-projects {
-    color: var(--purple-brown);
-  }
-}
-
-// main
-
-main {
-  position: relative;
-  max-width: 36rem;
-  padding: 0 1.5rem;
-  margin: -3rem auto 0;
-  font-size: 2rem;
-}
-
-// main transitions
-
-.slide-fade-enter-active {
-  transition: all 1s ease;
-}
-.slide-fade-leave-active {
-  transition: all .5s;
-}
-.slide-fade-enter, .slide-fade-leave-to {
-  transform: translateY(2rem);
-  opacity: 0;
-}
-
+  
+  .button:after, .button > span > span {
+    display: block;
+    text-align: center;
+    border-radius: 0.625em;
+    padding: 1em 0; }
+  .button:after {
+    content: attr(data-title);
+    width: 100%;
+    background: #4186b2;
+    color: #e26961; } 
+  .button > span > span {
+    width: 10em;
+    background: #e26961;
+    color: #4186b2; }
+  
+  /* what happens on hover */ 
+  .button:hover > span {
+    width: 100%; }
+  
 </style>
